@@ -1,7 +1,7 @@
 {
   "name": "emojify-text",
   "version": "0.0.0",
-  "description": "convert",
+  "description": "Convert boring text to wonderful emojis.",
   "main": "index.es5.js",
   "jsnext:main": "index.js",
   "files": [
@@ -36,17 +36,20 @@
   },
   "homepage": "https://github.com/denysdovhan/emojify-text#readme",
   "devDependencies": {
-    "babel-cli": "6.6.5",
+    "babel-cli": "6.14.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-es2015": "^6.14.0",
-    "babel-register": "6.7.2",
+    "babel-register": "6.14.0",
     "chokidar-cli": "^1.2.0",
     "coveralls": "^2.11.8",
     "eslint": "^3.4.0",
-    "npm-run-all": "^1.5.1",
-    "nyc": "^6.0.0",
+    "npm-run-all": "^3.1.0",
+    "nyc": "^8.1.0",
     "rimraf": "^2.5.2",
     "tap-spec": "^4.1.1",
     "tape": "^4.4.0"
+  },
+  "dependencies": {
+    "ramda": "^0.22.1"
   }
 }
