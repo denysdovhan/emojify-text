@@ -1,3 +1,6 @@
+
+![image](https://cloud.githubusercontent.com/assets/3459374/18203241/576ce2dc-711e-11e6-9015-47fd3f5a1a94.png)
+
 # emojify-text
 
 [![NPM version][npm-image]][npm-url]
