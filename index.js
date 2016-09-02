@@ -4,6 +4,7 @@ import {
   defaultTo,
   has,
   ifElse,
+  is,
   join,
   map,
   pipe,
@@ -11,7 +12,8 @@ import {
   replace,
   split,
   toUpper,
-  transpose
+  transpose,
+  unless
 } from 'ramda'
 
 import characters from './characters'
@@ -24,7 +26,7 @@ import characters from './characters'
  * @param  {String}  bg                      Alias for background
  * @param  {String}  fg                      Alias for foreground
  * @param  {JSON}    [dictionary=characters] Custom dictionary for rendering
- * @param  {boolean} [row=false]             Print in single row or not
+ * @param  {Boolean} [row=false]             Print in single row or not
  * @param  {String}  text                    Text to process through transformer
  * @return {String}                          The result of processing
  */
@@ -35,15 +37,19 @@ export default function emojifyText({
   foreground,
   dictionary = characters,
   row = false
-}, text) {
+} = {}, input) {
   return pipe(
+    unless(
+      is(String),
+      () => { throw new TypeError(`\`input\` should be an \`String\``) }
+    ),
     toUpper(),
     split(''),
     map(
       ifElse(
         has(__, dictionary),
         prop(__, dictionary),
-        always(dictionary.nochar)
+        always(defaultTo([], dictionary.nochar))
       )
     ),
     map(
@@ -57,5 +63,5 @@ export default function emojifyText({
     join('\n'),
     replace(/0/g, defaultTo(defaultTo('0', background), bg)),
     replace(/1/g, defaultTo(defaultTo('1', foreground), fg))
-  )(text)
+  )(input)
 }
