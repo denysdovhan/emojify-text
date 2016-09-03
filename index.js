@@ -62,8 +62,8 @@ function emojifyText({
       map(join('\n'))
     ),
     join('\n'),
-    replace(/0/g, defaultTo(defaultTo('0', background), bg)),
-    replace(/1/g, defaultTo(defaultTo('1', foreground), fg))
+    replace(/0/g, defaultTo(defaultTo('0', bg), background)),
+    replace(/1/g, defaultTo(defaultTo('1', fg), foreground))
   )(input)
 }
 
