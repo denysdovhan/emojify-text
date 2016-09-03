@@ -8,7 +8,9 @@
 [![Coveralls Status][coveralls-image]][coveralls-url]
 [![Dependency Status][depstat-image]][depstat-url]
 
-> convert
+> Convert boring text to wonderful emojis
+
+This package was made just for fun. [Мe](https://github.com/denysdovhan) and [Serhiy Boreyko](https://github.com/jestersunborn) were build that funny utility in the train while we were going home after [LvivJS'2016](http://www.lvivjs.org.ua/) conference. Actually, that was cool timekiller.
 
 ## Install
 
@@ -17,36 +19,99 @@
 ## Usage
 
 ```js
-import { emojifyText, emojifyTextAsync } from 'emojify-text';
+import emojifyText from 'emojify-text';
 
-emojifyText('unicorns'); // unicorns
-emojifyTextAsync('unicorns')
-  .then(result => console.log(result)); // unicorns
+emojifyText({ bg: '⭐️', fg: '💙' }, 'yay') //>
+// ⭐️⭐️⭐️⭐️⭐️⭐️⭐️
+// ⭐️💙⭐️⭐️⭐️💙⭐️
+// ⭐️⭐️💙⭐️💙⭐️⭐️
+// ⭐️⭐️⭐️💙⭐️⭐️⭐️
+// ⭐️⭐️⭐️💙⭐️⭐️⭐️
+// ⭐️⭐️⭐️💙⭐️⭐️⭐️
+// ⭐️⭐️⭐️⭐️⭐️⭐️⭐️
+// ⭐️⭐️⭐️⭐️⭐️⭐️⭐️
+// ⭐️⭐️⭐️💙⭐️⭐️⭐️
+// ⭐️⭐️💙⭐️💙⭐️⭐️
+// ⭐️💙⭐️⭐️⭐️💙⭐️
+// ⭐️💙💙💙💙💙⭐️
+// ⭐️💙⭐️⭐️⭐️💙⭐️
+// ⭐️⭐️⭐️⭐️⭐️⭐️⭐️
+// ⭐️⭐️⭐️⭐️⭐️⭐️⭐️
+// ⭐️💙⭐️⭐️⭐️💙⭐️
+// ⭐️⭐️💙⭐️💙⭐️⭐️
+// ⭐️⭐️⭐️💙⭐️⭐️⭐️
+// ⭐️⭐️⭐️💙⭐️⭐️⭐️
+// ⭐️⭐️⭐️💙⭐️⭐️⭐️
+// ⭐️⭐️⭐️⭐️⭐️⭐️⭐️
+```
+
+The function is curried as default. That means you could prepare settings and use the result function like this:
+
+```js
+import emojifyText from 'emojify-text'
+
+const emojify = emojifyText({
+  background: '🍏',
+  foreground: '🍎',
+  row: true
+})
+
+emojify('yay!') //>
+// 🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏
+// 🍏🍎🍏🍏🍏🍎🍏🍏🍏🍏🍎🍏🍏🍏🍏🍎🍏🍏🍏🍎🍏🍏🍏🍏🍎🍏🍏🍏
+// 🍏🍏🍎🍏🍎🍏🍏🍏🍏🍎🍏🍎🍏🍏🍏🍏🍎🍏🍎🍏🍏🍏🍏🍏🍎🍏🍏🍏
+// 🍏🍏🍏🍎🍏🍏🍏🍏🍎🍏🍏🍏🍎🍏🍏🍏🍏🍎🍏🍏🍏🍏🍏🍏🍎🍏🍏🍏
+// 🍏🍏🍏🍎🍏🍏🍏🍏🍎🍎🍎🍎🍎🍏🍏🍏🍏🍎🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏
+// 🍏🍏🍏🍎🍏🍏🍏🍏🍎🍏🍏🍏🍎🍏🍏🍏🍏🍎🍏🍏🍏🍏🍏🍏🍎🍏🍏🍏
+// 🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏🍏
 ```
 
 ## API
 
-### emojifyText(input, [options])
+### emojifyText(options, input)
 
-### emojifyTextAsync(input, [options])
-
-Return a promise that resolves to `result`.
-
-#### input
-
-*Required*  
-Type: `String`
-
-Lorem ipsum.
+Return a string which is generated based on `input` and provided `options`.
+If `input` is not provided, then it will return a function that takes `input`.
 
 #### options
 
-##### foo
+_Required_  
+Object with options.
+
+#### background
+
+Type: `String`  
+Default: `0`
+
+A character to be a background for text.  
+Alias: `bg` (`background` has higher priority than `bg`).
+
+#### foreground
+
+Type: `String`  
+Default: `1`
+
+A character to be a background as text.  
+Alias: `fg` (`foreground` has higher priority than `fg`).
+
+#### row
 
 Type: `Boolean`  
 Default: `false`
 
-Lorem ipsum.
+Render text in row or not.
+
+#### dictionary
+
+Type: `Object`  
+Default: [embedded dictionary](./characters.json)
+
+### input
+
+_Required_  
+Type: `String`  
+
+Text which will be rendered as emojis.
 
 ## License
 
