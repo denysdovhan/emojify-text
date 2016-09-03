@@ -7,7 +7,6 @@ test('emojifyText', ({ equal, throws, end }) => {
 
   equal(emojifyText({}, 'test'), fixture, 'basic transformation')
 
-  throws(() => { emojifyText({}) }, TypeError, 'empty input')
   throws(() => { emojifyText({}, []) }, TypeError, 'invalid input')
 
   end()

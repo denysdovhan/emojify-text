@@ -1,6 +1,7 @@
 import {
   __,
   always,
+  curry,
   defaultTo,
   has,
   ifElse,
@@ -30,14 +31,14 @@ import characters from './characters'
  * @param  {String}  text                    Text to process through transformer
  * @return {String}                          The result of processing
  */
-export default function emojifyText({
+function emojifyText({
   bg,
   fg,
   background,
   foreground,
   dictionary = characters,
   row = false
-} = {}, input) {
+}, input) {
   return pipe(
     unless(
       is(String),
@@ -65,3 +66,5 @@ export default function emojifyText({
     replace(/1/g, defaultTo(defaultTo('1', foreground), fg))
   )(input)
 }
+
+export default curry(emojifyText)
