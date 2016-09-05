@@ -27,7 +27,7 @@
     "url": "git+https://github.com/denysdovhan/emojify-text.git"
   },
   "keywords": [
-    "emoji"
+    "emoji", "emojis", "text", "emojify"
   ],
   "author": "Denys Dovhan <email@denysdovhan.com> (http://denysdovhan.com)",
   "license": "MIT",
