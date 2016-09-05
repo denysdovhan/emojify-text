@@ -6,7 +6,8 @@
   "jsnext:main": "index.js",
   "files": [
     "index.es5.js",
-    "index.js"
+    "index.js",
+    "characters.json"
   ],
   "scripts": {
     "lint": "eslint .",
