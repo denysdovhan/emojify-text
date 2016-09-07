@@ -16,6 +16,7 @@ import {
   transpose,
   unless
 } from 'ramda'
+import contract from 'neat-contract'
 
 import characters from './characters'
 
@@ -40,11 +41,8 @@ function emojifyText({
   row = false
 }, input) {
   return pipe(
-    unless(
-      is(String),
-      () => { throw new TypeError(`\`input\` should be an \`String\``) }
-    ),
-    toUpper(),
+    contract('input', String),
+    toUpper,
     split(''),
     map(
       ifElse(
@@ -58,7 +56,10 @@ function emojifyText({
     ),
     ifElse(
       always(row),
-      pipe(transpose(), map(join(''))),
+      pipe(
+        transpose(),
+        map(join(''))
+      ),
       map(join('\n'))
     ),
     join('\n'),
