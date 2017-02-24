@@ -1,6 +1,6 @@
 {
   "name": "emojify-text",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "Convert boring text to wonderful emojis",
   "main": "index.es5.js",
   "jsnext:main": "index.js",
